@@ -30,7 +30,7 @@ include 'partials/_nav.php';
             <td id="idd">{{id_}}</td>
             <td>{{name_}}</td>
             <td>{{last_name}}</td>
-            <td> <a href="http://localhost/crud_hotel_ajax/other_pages/view.php"><button type="submit" name="mostra" class="form-control button is-link is-normal">View</button></a></td>
+            <td> <a href="http://localhost/crud_hotel_ajax/other_pages/view.php?id={{id_}}"><button type="submit" name="mostra" class="form-control button is-link is-normal">View</button></a></td>
             <td> <a href="#"><button type="submit" name="cancella" class="form-control button is-danger is-normal" data-id="{{id_}}">Delete Selected ID</button></a></td>
             <!-- {{id_}} e' utilissimo, posso sfruttare handlebars per usare js come php dentro all html -->
           </tr>
