@@ -125,19 +125,29 @@ $(document).ready(function () {
   //
   //   }
   // }
+  //funzione che mi chiama tutti i dati della pagina indice.
 
 
-  $.ajax({
-    url: 'http://localhost/crud_hotel_ajax/server/server_show.php',
-    method: 'GET',
-    success: function success(data) {
-      // console.log(data);
-      var data_hosts = JSON.parse(data);
-      console.log(data_hosts);
-      handlebarsPrintData(data_hosts); // printSingleData(data_hosts)
+  function callData() {
+    //questo controllo mi dice che se il body ha la classe indice (ovvero, se il relativo oggetto jquery ha lunghezza maggiore di 1)
+    //allora faccio la chiamata, in alternativa, ovvero se per esempio siamo in un altra pagina , per esempio form, la chiamata non viene neppure fatta,
+    //cosi si evita di fare una chiamata ajax inutilmente.
+    if ($('body.indice').length > 0) {
+      $.ajax({
+        url: 'http://localhost/crud_hotel_ajax/server/server_indice.php',
+        method: 'GET',
+        success: function success(data) {
+          // console.log(data);
+          var data_hosts = JSON.parse(data);
+          console.log(data_hosts);
+          handlebarsPrintData(data_hosts); // printSingleData(data_hosts)
+        }
+      });
     }
-  }); //cancella id selezionato
-  //se schiaccio il bottone, allora fa la chiamata
+  }
+
+  callData(); //cancella id selezionato
+  //se schiaccio il bottone, allora fa la chiamata ajax che punta al file php con la query della cancellazione
 
   $(document).on('click', '.is-danger', function (event) {
     var myId = $(this).attr('data-id');
@@ -157,7 +167,8 @@ $(document).ready(function () {
           if ($(this).find('#idd').text() == myId) {
             $(this).addClass('nascosto');
           }
-        });
+        }); //in alternativa, richiamo tutto il dataset
+        // callData();
       }
     });
   });

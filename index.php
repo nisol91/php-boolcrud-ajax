@@ -10,7 +10,7 @@ include 'partials/_head.php';
 include 'partials/_nav.php';
 
 ?>
-  <body>
+  <body class="indice">
     <div class="title container-fluid">
       <h2>Lista degli Ospiti</h2>
     </div>
