@@ -14,34 +14,25 @@ include 'partials/_nav.php';
     <div class="title container-fluid">
       <h2>Lista degli Ospiti</h2>
     </div>
-    <div class="crea container">
-      <a href="http://localhost/php_sql_crud_hotel/create/create.php"><button type="button" class="button is-info" style="width: 300px">Add Host</button></a>
-
-      <!-- cancella id selezionato -->
-      <form class="" action="http://localhost/php_sql_crud_hotel/delete_selected_id/database_delete_selected.php" method="post">
-        <!-- per passare l id da cancellare, lo metto direttamente nel VALUE di un input nascosto -->
-        <input type="text" name="iddd_show_input" value="<?php echo $value['id']; ?>">
-        <td> <a href="#"><button type="submit" name="Cancella" class="form-control button is-danger">Delete Selected ID</button></a></td>
-      </form>
-    </div>
     <table class="table is-fullwidth" >
       <thead>
         <tr>
-          <th><abbr>id</abbr></th>
-          <th><abbr>Name</abbr></th>
-          <th><abbr>Last Name</abbr></th>
-          <th><abbr></abbr></th>
-          <th><abbr></abbr></th>
+          <th style="width: 20%"><abbr>id</abbr></th>
+          <th style="width: 20%"><abbr>Name</abbr></th>
+          <th style="width: 20%"><abbr>Last Name</abbr></th>
+          <th style="width: 20%"><abbr></abbr></th>
+          <th style="width: 20%"><abbr></abbr></th>
         </tr>
       </thead>
       <tbody>
         <script id="row-ospite" type="text/x-handlebars-template">
           <tr>
-            <td>{{id_}}</td>
+            <td id="idd">{{id_}}</td>
             <td>{{name_}}</td>
             <td>{{last_name}}</td>
-            <td> <a href="#"><button type="submit" name="Cancella" class="form-control button is-link is-normal">View</button></a></td>
-            <td> <a href="#"><button type="submit" name="vedi" class="form-control button is-danger is-normal">Delete Selected ID</button></a></td>
+            <td> <a href="http://localhost/crud_hotel_ajax/other_pages/view.php"><button type="submit" name="mostra" class="form-control button is-link is-normal">View</button></a></td>
+            <td> <a href="#"><button type="submit" name="cancella" class="form-control button is-danger is-normal" data-id="{{id_}}">Delete Selected ID</button></a></td>
+            <!-- {{id_}} e' utilissimo, posso sfruttare handlebars per usare js come php dentro all html -->
           </tr>
         </script>
       </tbody>

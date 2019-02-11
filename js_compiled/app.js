@@ -97,8 +97,9 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var handlebars_dist_cjs_handlebars_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! handlebars/dist/cjs/handlebars.js */ "./node_modules/handlebars/dist/cjs/handlebars.js");
 /* harmony import */ var handlebars_dist_cjs_handlebars_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(handlebars_dist_cjs_handlebars_js__WEBPACK_IMPORTED_MODULE_0__);
- //purtroppo il metodo da sito handlebars per l importazione non funziona. bisogna fare come qui sopra stando attenti
+//purtroppo il metodo da sito handlebars per l importazione non funziona. bisogna fare come qui sotto stando attenti
 //anche a mettere il percorso omettendo node_modules, se no non lo trova, perche considera che siamo gia dentro node_modules.
+
 
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
@@ -116,21 +117,49 @@ $(document).ready(function () {
         last_name: data[i]['lastname']
       };
       var html = template(my_template);
-      $('tbody').append(html);
-      console.log(html);
+      $('tbody').append(html); // console.log(html);
     }
   } //---------------------
+  // printSingleData(data) {
+  //   for (var i = 0; i < data.length; i++) {
+  //
+  //   }
+  // }
 
 
   $.ajax({
-    url: 'http://localhost/crud_hotel_ajax/server/show.php',
+    url: 'http://localhost/crud_hotel_ajax/server/server_show.php',
     method: 'GET',
     success: function success(data) {
       // console.log(data);
       var data_hosts = JSON.parse(data);
       console.log(data_hosts);
-      handlebarsPrintData(data_hosts);
+      handlebarsPrintData(data_hosts); // printSingleData(data_hosts)
     }
+  }); //cancella id selezionato
+  //se schiaccio il bottone, allora fa la chiamata
+
+  $(document).on('click', '.is-danger', function (event) {
+    var myId = $(this).attr('data-id');
+    console.log(myId);
+    $.ajax({
+      url: 'http://localhost/crud_hotel_ajax/server/server_delete.php',
+      method: 'GET',
+      data: {
+        id: myId
+      },
+      success: function success(data) {
+        alert("id ".concat(myId, " eliminato")); //nascondo il mio elemento eliminato, se no scomparirebbe solo al refresh
+
+        $('tbody').find('tr').each(function (index) {
+          // console.log($(this).find('#idd').text());
+          // console.log(myId);
+          if ($(this).find('#idd').text() == myId) {
+            $(this).addClass('nascosto');
+          }
+        });
+      }
+    });
   });
 });
 

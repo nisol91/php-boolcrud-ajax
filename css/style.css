@@ -11410,6 +11410,10 @@ label.panel-block:hover {
   box-sizing: border-box;
 }
 
+.nascosto {
+  display: none;
+}
+
 .navy {
   width: 100%;
   height: 90px;

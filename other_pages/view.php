@@ -6,8 +6,8 @@
 // include 'index/database_ospiti_list.php';
 
 // html
-include 'partials/_head.php';
-include 'partials/_nav.php';
+include '../partials/_head.php';
+include '../partials/_nav.php';
 
 ?>
   <body>
@@ -18,6 +18,6 @@ include 'partials/_nav.php';
     <!-- <script src="js_source/source.js"></script> -->
     <script src="js_compiled/app.js"></script>
 
-    <?php include 'partials/_footer.php'; ?>
+    <?php include '../partials/_footer.php'; ?>
   </body>
 </html>
