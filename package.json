@@ -28,7 +28,9 @@
     "vue-template-compiler": "^2.6.5"
   },
   "dependencies": {
+    "bootstrap": "^4.2.1",
     "bulma": "^0.7.4",
+    "handlebars": "^4.1.0",
     "jquery": "^3.3.1"
   }
 }
